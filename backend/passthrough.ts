@@ -27,6 +27,10 @@ export async function createInvestorClosing(
         investor_name: user.name,
         collaborators: [{ email: user.email }],
         client_reference_id: `${c.randomUUID()}`,
+        // Add countersigner email if it's set in the environment
+        ...process.env.CUNTERSIGNER_EMAIL 
+          ? {countersigner1_email: process.env.CUNTERSIGNER_EMAIL} 
+          : {},
       },
     ],
   });

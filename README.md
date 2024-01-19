@@ -18,6 +18,11 @@ Moneyrunner is a demo application to showcase Passthrough's API integration.
 > npm run server
 ```
 
+### Running with docker
+```
+docker run -p 9000:9000 --env-file ./.env pt-moneyrunner-test
+```
+
 ### Deploying
 Any commit merged to main will be automatically deployed.
 

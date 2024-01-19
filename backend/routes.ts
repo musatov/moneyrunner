@@ -189,6 +189,8 @@ router.post(
 router.post("/passthrough-callback", async (req: any, res: any) => {
   const { event_type: eventType, data } = req.body;
 
+  console.warn("Passthrough callback received", eventType, data);
+
   if (eventType === "investor-closing-status-change") {
     await services.updatePassthroughSubscription(data.investor_closing.id, {
       status: data.investor_closing.status,

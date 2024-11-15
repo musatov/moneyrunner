@@ -28,4 +28,5 @@ export const logout = () =>
     window.location.href = "/login";
   });
 
-export const login = () => axios.post("/api/auth/login");
+export const login = (user?: {name: string, email: string}) => 
+  axios.post("/api/auth/login", user);

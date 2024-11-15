@@ -14,10 +14,14 @@ const router = Router();
 router.post("/auth/login", async (req, res) => {
   // If test mode is enabled, login with admin
   if (process.env.TEST_MODE) {
-    const user = await services.getOrCreateUser({ 
-      email: process.env.INVESTOR_EMAIL,
-      name: process.env.INVESTOR_NAME
-    });
+    
+    const userCredentials = req.body.email && req.body.name 
+      ? req.body 
+      : {
+        email: process.env.ADMIN_EMAIL,
+        name: process.env.ADMIN_NAME
+      };
+    const user = await services.getOrCreateUser(userCredentials);
     // @ts-ignore
     req.session.userId = user.id;
     return res.status(200).json({ authUri: "/" });
